@@ -13,19 +13,19 @@ form.addEventListener('submit', async event => {
   event.preventDefault();
 
   const searchValue = event.target.elements.search.value.trim();
-  console.log(searchValue);
+
   if (searchValue !== '') {
-    loader.classList.remove('hidden'); // Show loader
-    gallery.innerHTML = ''; // Clear gallery before new search
+    loader.classList.remove('hidden');
+    gallery.innerHTML = '';
     submitButton.disabled = true;
     try {
-      await fetchSearch(searchValue); // Fetch images based on the search value
+      await fetchSearch(searchValue);
       form.reset();
     } catch (error) {
-      console.error(error); // For debugging purposes
+      console.error(error);
       iziToastMes('🚨 Something went wrong while fetching images!');
     } finally {
-      loader.classList.add('hidden'); // Hide loader, no matter what
+      loader.classList.add('hidden');
       submitButton.disabled = false;
     }
   } else {
